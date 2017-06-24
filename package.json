@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Smart Links",
   "author": "angry-boys-and-girl",
-  "license": "MIT",
+  "license": "ISC",
+  "private": true,
   "scripts": {
     "start": "npm run client && npm run server",
     "client": "npm run clean && webpack -p",
