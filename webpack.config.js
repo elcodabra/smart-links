@@ -1,17 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './client/app.html',
-  filename: 'index.html',
-  inject: 'body',
-});
+const config = require('./config');
 
-// TODO: app and bundle separate in output
 module.exports = {
   entry: {
-    app: './client/app.jsx',
-        //styles: './static/main.scss'
+    app: './src/app.jsx',
   },
   output: {
     filename: '[name].js',
@@ -30,5 +24,22 @@ module.exports = {
       },
     ],
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/app.html',
+      filename: 'index.html',
+      inject: 'body',
+    }),
+  ],
+
+  devServer: {
+    historyApiFallback: true,
+    stats: 'minimal',
+    proxy: {
+      '/backend': {
+        target: `http://localhost:${config.PORT}`,
+        secure: false,
+      },
+    },
+  },
 };

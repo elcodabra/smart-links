@@ -5,11 +5,9 @@ import {
     Route,
 } from 'react-router-dom';
 
-import config from '../config';
-
 const Home = () => (
   <div>
-    <h1>Welcome to {config.NAME}! Go to <a href={`http://t.me/${config.NAME}`}>Bot</a></h1>
+    <h1>Welcome to Smart-Links!</h1>
   </div>
 );
 
