@@ -1,11 +1,16 @@
-const path = require('path');
 const compression = require('compression');
 const express = require('express');
 const config = require('./config');
+const rp = require('request-promise');
+const getEmoji = require('./src/emojis');
 
 const app = express();
 
 app.set('port', config.PORT);
+
+const getLinkFromText = text => text.split('-').map(word => getEmoji(word) || word).join('-');
+
+const getLinkFromTitle = html => html.match(/<title.*>(.*)<\/title>/)[1].replace(' ', '-').toLowerCase();
 
 // Gzip
 app.use(compression());
@@ -23,11 +28,10 @@ app.get('/make', async (req, res) => {
     // TODO: add async service TEXT MINING
     smartLink = 'from url html body';
   } else {
-    // TODO: async get from title
-    smartLink = 'from url title';
+    smartLink = await rp(req.query.url).then(getLinkFromTitle);
   }
   // TODO: saveToDB(smartLink, req.query.url);
-  res.send(smartLink);
+  res.send(getLinkFromText('kiss-ball-love'));
 });
 
 // TODO: check exclude /make or /stats
