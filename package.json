@@ -1,0 +1,8 @@
+{
+  "name": "smart-links",
+  "version": "1.0.0",
+  "description": "Smart Links",
+  "main": "index.js",
+  "author": "angry-boys-and-girl",
+  "license": "MIT"
+}
