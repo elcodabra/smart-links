@@ -1,3 +1,4 @@
+const path = require('path');
 const compression = require('compression');
 const express = require('express');
 const config = require('./config');
@@ -30,7 +31,7 @@ app.get('/make', async (req, res) => {
 });
 
 // TODO: check exclude /make or /stats
-app.get('/:smartUrlId', async (req, res) => {
+app.get('/link/:smartUrlId', async (req, res) => {
   const redirectUrl = ''; // TODO:  = getFromDB(req.params.smartUrlId)
   res.send(redirectUrl || req.params.smartUrlId);
 });
