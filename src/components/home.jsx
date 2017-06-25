@@ -13,7 +13,7 @@ class HomeComponent extends React.Component {
     this.onCustomize = this.onCustomize.bind(this);
     this.onClipboard = this.onClipboard.bind(this);
     this.urlChange = this.urlChange.bind(this);
-    this.state = { url: '', smart: '', isProcessing: false, isCustomize: false };
+    this.state = { url: '', smart: '', smart_id: '', isProcessing: false, isCustomize: false };
   }
 
   addEmoji(emoji) {
@@ -25,8 +25,17 @@ class HomeComponent extends React.Component {
   }
 
   onCustomize() {
-    // TODO: save or customize
-    if (this.state.isCustomize) console.log(this.state.smart);
+    if (this.state.isCustomize) {
+      axios.get(`/save?id=${this.state.smart}&url=${this.state.smart}`)
+        .then((res) => {
+          console.log(res);
+          const data = res.data;
+          this.setState({ smart: data.Link.url, smart_id: data.Link.id, isProcessing: false });
+        })
+        .catch((err) => {
+          this.setState({ isProcessing: false });
+        });
+    }
     this.setState({ isCustomize: !this.state.isCustomize });
   }
 
@@ -35,13 +44,18 @@ class HomeComponent extends React.Component {
   }
 
   urlChange(e) {
+    if (!e.target.value) return;
     // TODO: validate url
     this.setState({ url: e.target.value, isProcessing: true });
-    axios.get(`/stats/${e.target.value}`)
+    axios.get(`/make?url=${e.target.value}`)
       .then((res) => {
         console.log(res);
         const data = res.data;
-        this.setState({ smart: data.Link.url, isProcessing: false });
+        this.setState({ smart: data.createLink.url, smart_id: data.createLink.id, isProcessing: false });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({ isProcessing: false });
       });
   }
 

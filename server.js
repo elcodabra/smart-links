@@ -13,7 +13,7 @@ app.set('port', config.PORT);
 
 const getLinkFromText = text => text.split('-').map(word => getEmoji(word) || word).join('-');
 
-const getTextFromTitle = html => getLinkFromText(html.match(/<title.*>(.*)<\/title>/)[1].replace(' ', '-').toLowerCase());
+const getTextFromTitle = html => getLinkFromText(html.match(/<title.*>(.*)<\/title>/)[1].replace(/\s/g, '-').toLowerCase());
 
 const client = new Lokka({
   transport: new Transport('https://api.graph.cool/simple/v1/cj415qy57a9cd0185cjd43tk6'),
@@ -52,6 +52,20 @@ function setLink(link, url) {
         url: "${link}"
         redirectUrl: "${url}"
       ) {
+        id,
+        url
+      }
+    }
+  `);
+}
+
+function updateLink(id, link) {
+  return client.mutate(`
+    {
+      updateLink(
+        id: "${id}"
+        url: "${link}"
+      ) {
         id
       }
     }
@@ -74,17 +88,30 @@ app.get('/all', async (req, res) => {
   res.send(results);
 });
 
+app.get('/save', async (req, res) => {
+  try {
+    const results = await updateLink(req.query.id, req.query.url);
+    res.send(results);
+  } catch (err) {
+    res.send(null);
+  }
+});
+
 // Get smart-link /make?url=http://google.com
 app.get('/make', async (req, res) => {
-  let smartLink;
-  if (req.query.from === 'body') {
-    // TODO: add async service TEXT MINING
-    smartLink = 'from url html body';
-  } else {
-    smartLink = await rp(req.query.url).then(getTextFromTitle);
+  try {
+    let smartLink;
+    if (req.query.from === 'body') {
+      // TODO: add async service TEXT MINING
+      smartLink = 'from url html body';
+    } else {
+      smartLink = await rp(req.query.url).then(getTextFromTitle);
+    }
+    const response = await setLink(smartLink, req.query.url);
+    res.send(response);
+  } catch (err) {
+    res.send(null);
   }
-  setLink(smartLink, req.query.url);
-  res.send(smartLink);
 });
 
 // TODO: check exclude /make or /stats
