@@ -25,9 +25,9 @@ class HomeComponent extends React.Component {
     const smartUrl = <h2>{this.state.smart}</h2>;
     const process = this.state.isProcessing && this.state.smart ? processing : smartUrl;
     return (
-      <div>
+      <div className="container">
         <h1>Your url:</h1>
-        <input className="input-main" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
+        <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
         <div className="info">Click it or CMD+C to copy</div>
         <div className="button-wrap justify">
           <button className="blue">GENERATE ANOTHER</button>
