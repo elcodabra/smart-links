@@ -13,7 +13,7 @@ class HomeComponent extends React.Component {
     this.onCustomize = this.onCustomize.bind(this);
     this.onClipboard = this.onClipboard.bind(this);
     this.urlChange = this.urlChange.bind(this);
-    this.state = { url: '', smart: '', smart_id: '', isProcessing: false, isCustomize: false };
+    this.state = { url: '', smart: '', smart_id: '', err: false, isProcessing: false, isCustomize: false };
   }
 
   addEmoji(emoji) {
@@ -26,21 +26,21 @@ class HomeComponent extends React.Component {
 
   onCustomize() {
     if (this.state.isCustomize) {
-      axios.get(`/save?id=${this.state.smart}&url=${this.state.smart}`)
+      axios.get(`/save?id=${this.state.smart_id}&url=${this.state.smart}`)
         .then((res) => {
           console.log(res);
           const data = res.data;
           this.setState({ smart: data.Link.url, smart_id: data.Link.id, isProcessing: false });
         })
         .catch((err) => {
-          this.setState({ isProcessing: false });
+          this.setState({ isProcessing: false, err: true });
         });
     }
     this.setState({ isCustomize: !this.state.isCustomize });
   }
 
   generateAnother() {
-    this.setState({ smart: this.state.smart + '-new' });
+    this.setState({ url: '', smart: '', smart_id: '', err: false, isProcessing: false, isCustomize: false });
   }
 
   urlChange(e) {
@@ -55,7 +55,7 @@ class HomeComponent extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        this.setState({ isProcessing: false });
+        this.setState({ isProcessing: false, err: true });
       });
   }
 
@@ -63,33 +63,39 @@ class HomeComponent extends React.Component {
     return `/assets/emojis/${sheetSize}.png`;
   }
 
-  onClipboard(event){
+  onClipboard(event) {
       event.preventDefault();
       console.log(this.state.smart);
   }
 
   render() {
-    const processing = <div>
-                          <div className="processing">Processing...</div>
-                          <div className="preloader ani_1 easing">
-                              <div className="item">🍞</div>
-                              <div className="item">🏀</div>
-                              <div className="item">🏄</div>
-                              <div className="item">🐟</div>
-                              <div className="item">💀</div>
-                              <div className="item">🐥</div>
-                              <div className="item">🎺</div>
-                              <div className="item">🎩</div>
-                              <div className="item">💋</div>
-                              <div className="item">🍑</div>
-                              <div className="item">🍕</div>
-                              <div className="item">🎧</div>
-                          </div>
-                        </div>;
+    const processing = (
+      <div>
+        <div className="processing">Processing...</div>
+        <div className="preloader ani_1 easing">
+            <div className="item">🍞</div>
+            <div className="item">🏀</div>
+            <div className="item">🏄</div>
+            <div className="item">🐟</div>
+            <div className="item">💀</div>
+            <div className="item">🐥</div>
+            <div className="item">🎺</div>
+            <div className="item">🎩</div>
+            <div className="item">💋</div>
+            <div className="item">🍑</div>
+            <div className="item">🍕</div>
+            <div className="item">🎧</div>
+        </div>
+      </div>
+    );
     const smartUrl = (
       <div>
         <h1>Your smart url</h1>
-        <input className="fild big" onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
+        {!this.state.isCustomize ? (
+          <input className="fild big" value={window.location.href + 'link/' + this.state.smart} disabled={true} />
+        ) : (
+          <input className="fild big" onChange={this.onChangeSmart} value={this.state.smart} />
+        )}
         <div className="info"><a href="#" className="link" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
         <div className="button-wrap justify">
           <button className="blue" onClick={this.generateAnother}>GENERATE ANOTHER</button>
@@ -106,6 +112,7 @@ class HomeComponent extends React.Component {
         <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
       </div>
     );
+
     const process = this.state.isProcessing ? processing : this.state.smart ? smartUrl : startUrl;
     return (
       <div className="container">

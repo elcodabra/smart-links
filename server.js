@@ -13,7 +13,7 @@ app.set('port', config.PORT);
 
 const getLinkFromText = text => text.split('-').map(word => getEmoji(word) || word).join('-');
 
-const getTextFromTitle = html => getLinkFromText(html.match(/<title.*>(.*)<\/title>/)[1].replace(/\s/g, '-').toLowerCase());
+const getTextFromTitle = html => getLinkFromText(html.match(/<title.*>(.*)<\/title>/)[1].replace(/\s|\?/g, '-').toLowerCase());
 
 const client = new Lokka({
   transport: new Transport('https://api.graph.cool/simple/v1/cj415qy57a9cd0185cjd43tk6'),
@@ -106,6 +106,10 @@ app.get('/make', async (req, res) => {
       smartLink = 'from url html body';
     } else {
       smartLink = await rp(req.query.url).then(getTextFromTitle);
+    }
+    const oldLink = await getLink(smartLink);
+    if (oldLink && oldLink.Link) {
+      smartLink += getEmoji();
     }
     const response = await setLink(smartLink, req.query.url);
     res.send(response);
