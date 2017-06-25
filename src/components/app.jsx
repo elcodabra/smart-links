@@ -18,7 +18,7 @@ const Topic = ({ match }) => (
 
 ReactDOM.render(
   <div>
-    <div className="logo" />
+    <div className="logo">smart-url</div>
     <Router>
       <div>
         <Route exact path="/" component={HomeComponent} />

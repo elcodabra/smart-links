@@ -69,12 +69,28 @@ class HomeComponent extends React.Component {
   }
 
   render() {
-    const processing = <div>Processing...</div>;
+    const processing = <div>
+                          <div className="processing">Processing...</div>
+                          <div className="preloader ani_1 easing">
+                              <div className="item">🍞</div>
+                              <div className="item">🏀</div>
+                              <div className="item">🏄</div>
+                              <div className="item">🐟</div>
+                              <div className="item">💀</div>
+                              <div className="item">🐥</div>
+                              <div className="item">🎺</div>
+                              <div className="item">🎩</div>
+                              <div className="item">💋</div>
+                              <div className="item">🍑</div>
+                              <div className="item">🍕</div>
+                              <div className="item">🎧</div>
+                          </div>
+                        </div>;
     const smartUrl = (
       <div>
         <h1>Your smart url</h1>
         <input className="fild big" onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
-        <div className="info"><a href="#" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
+        <div className="info"><a href="#" className="link" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
         <div className="button-wrap justify">
           <button className="blue" onClick={this.generateAnother}>GENERATE ANOTHER</button>
           <span className="text">or</span>
@@ -83,29 +99,13 @@ class HomeComponent extends React.Component {
       </div>
     );
 
-    const preloader = (
-        <div className="preloader ani_1 easing">
-            <div className="item">🍞</div>
-            <div className="item">🏀</div>
-            <div className="item">🏄</div>
-            <div className="item">🐟</div>
-            <div className="item">💀</div>
-            <div className="item">🐥</div>
-            <div className="item">🎺</div>
-            <div className="item">🎩</div>
-            <div className="item">💋</div>
-            <div className="item">🍑</div>
-            <div className="item">🍕</div>
-            <div className="item">🎧</div>
-        </div>
+
+    const startUrl = (
+      <div>
+        <h1>Your url</h1>
+        <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
+      </div>
     );
-      const startUrl = (
-          <div>
-            <h1>Your url</h1>
-             {preloader}
-            <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
-          </div>
-      );
     const process = this.state.isProcessing ? processing : this.state.smart ? smartUrl : startUrl;
     return (
       <div className="container">
