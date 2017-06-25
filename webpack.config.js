@@ -28,6 +28,7 @@ module.exports = {
         test: /\.css$/,
         include: [
           path.resolve(__dirname, './src/styles'),
+          path.resolve(__dirname, './node_modules/normalize.css/normalize.css'),
         ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',

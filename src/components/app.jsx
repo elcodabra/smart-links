@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import HomeComponent from './home';
 
+require('normalize.css/normalize.css');
 require('../styles/app.css');
 require('../styles/fonts.css');
 
