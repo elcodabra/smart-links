@@ -11,6 +11,7 @@ class HomeComponent extends React.Component {
     this.generateAnother = this.generateAnother.bind(this);
     this.onChangeSmart = this.onChangeSmart.bind(this);
     this.onCustomize = this.onCustomize.bind(this);
+    this.onClipboard = this.onClipboard.bind(this);
     this.urlChange = this.urlChange.bind(this);
     this.state = { url: '', smart: '', isProcessing: false, isCustomize: false };
   }
@@ -48,12 +49,18 @@ class HomeComponent extends React.Component {
     return `/assets/emojis/${sheetSize}.png`;
   }
 
+  onClipboard(event){
+      event.preventDefault();
+      console.log(this.state.smart);
+  }
+
   render() {
     const processing = <div>Processing...</div>;
     const smartUrl = (
       <div>
-        <input onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
-        <div className="info">Click it or CMD+C to copy</div>
+        <h1>Your smart url</h1>
+        <input className="fild big" onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
+        <div className="info"><a href="#" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
         <div className="button-wrap justify">
           <button className="blue" onClick={this.generateAnother}>GENERATE ANOTHER</button>
           <span className="text">or</span>
@@ -61,11 +68,15 @@ class HomeComponent extends React.Component {
         </div>
       </div>
     );
-    const process = this.state.isProcessing ? processing : this.state.smart ? smartUrl : '';
+      const startUrl = (
+          <div>
+            <h1>Your url</h1>
+            <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
+          </div>
+      );
+    const process = this.state.isProcessing ? processing : this.state.smart ? smartUrl : startUrl;
     return (
       <div className="container">
-        <h1>Your url:</h1>
-        <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
         {process}
         {!this.state.isCustomize ? '' : (
           <Picker onClick={this.addEmoji} emojiSize={26} perLine={16} sheetSize={32} backgroundImageFn={this.backgroundImageFn} autoFocus={true} />
