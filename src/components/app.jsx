@@ -7,7 +7,6 @@ import {
 import HomeComponent from './home';
 
 require('normalize.css/normalize.css');
-require('emojione-picker/css/picker.css');
 require('../styles/app.css');
 require('../styles/fonts.css');
 

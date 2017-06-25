@@ -1,12 +1,36 @@
 import React from 'react';
 import axios from 'axios';
-import EmojiPicker from 'emojione-picker';
+import { Picker } from 'emoji-mart';
+
+require('emoji-mart/css/emoji-mart.css');
 
 class HomeComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.addEmoji = this.addEmoji.bind(this);
+    this.generateAnother = this.generateAnother.bind(this);
+    this.onChangeSmart = this.onChangeSmart.bind(this);
+    this.onCustomize = this.onCustomize.bind(this);
     this.urlChange = this.urlChange.bind(this);
-    this.state = { url: '', smart: '', isProcessing: false };
+    this.state = { url: '', smart: '', isProcessing: false, isCustomize: false };
+  }
+
+  addEmoji(emoji) {
+    this.setState({ smart: this.state.smart + emoji.native });
+  }
+
+  onChangeSmart(e) {
+    this.setState({ smart: e.target.value });
+  }
+
+  onCustomize() {
+    // TODO: save or customize
+    if (this.state.isCustomize) console.log(this.state.smart);
+    this.setState({ isCustomize: !this.state.isCustomize });
+  }
+
+  generateAnother() {
+    this.setState({ smart: this.state.smart + '-new' });
   }
 
   urlChange(e) {
@@ -20,24 +44,32 @@ class HomeComponent extends React.Component {
       });
   }
 
+  backgroundImageFn(set, sheetSize) {
+    return `/assets/emojis/${sheetSize}.png`;
+  }
+
   render() {
     const processing = <div>Processing...</div>;
-    const smartUrl = <h2>{this.state.smart}</h2>;
-    const process = this.state.isProcessing && this.state.smart ? processing : smartUrl;
+    const smartUrl = (
+      <div>
+        <input onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
+        <div className="info">Click it or CMD+C to copy</div>
+        <div className="button-wrap justify">
+          <button className="blue" onClick={this.generateAnother}>GENERATE ANOTHER</button>
+          <span className="text">or</span>
+          <button className="blue" onClick={this.onCustomize}>{this.state.isCustomize ? 'SAVE' : 'CUSTOMIZE'}</button>
+        </div>
+      </div>
+    );
+    const process = this.state.isProcessing ? processing : this.state.smart ? smartUrl : '';
     return (
       <div className="container">
         <h1>Your url:</h1>
         <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
-        <div className="info">Click it or CMD+C to copy</div>
-        <div className="button-wrap justify">
-          <button className="blue">GENERATE ANOTHER</button>
-          <span className="text">or</span>
-          <button className="blue">CUSTOMIZE</button>
-        </div>
         {process}
-        <EmojiPicker onChange={(data) => {
-          console.log('Emoji chosen', data);
-        }} />
+        {!this.state.isCustomize ? '' : (
+          <Picker onClick={this.addEmoji} emojiSize={26} perLine={16} sheetSize={32} backgroundImageFn={this.backgroundImageFn} autoFocus={true} />
+        )}
       </div>
     );
   }

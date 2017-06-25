@@ -23,7 +23,7 @@
     "compression": "^1.6.2",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
-    "emojione-picker": "^2.2.1",
+    "emoji-mart": "^1.0.0",
     "es6-promise": "^4.1.0",
     "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.1.2",

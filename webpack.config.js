@@ -50,6 +50,10 @@ module.exports = {
       from: 'src/assets/favicon.ico',
       to: './assets/favicon.ico',
     }]),
+    new CopyWebpackPlugin([{
+      from: 'src/assets/emojis',
+      to: './assets/emojis',
+    }]),
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       template: './src/app.html',
