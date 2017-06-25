@@ -27,7 +27,7 @@ body {
   to { background-position: 100% -190px; }
 }
 
-h1  {
+h1, .processing  {
   font-weight: bold;
   font-size: 62px;
   text-align: left;
@@ -189,24 +189,43 @@ textarea {
 }
 /* BUTTON : end */
 
+
+
 .preloader {
   display: inline-block;
   margin: 0 auto;
   font-size: 40px;
+  height: 80px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  max-width: 650px;
+  min-width: 630px;
 }
+.preloader .item {
+  margin: 0 3px;
+}
+
 .preloader.ani_1 .item{
-  animation-name: example;
+  -webkit-animation-name: smail;
+  -moz-animation-name: smail;
+  -ms-animation-name: smail;
+  animation-name: smail;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
   animation-duration: 1s;
 }
 .preloader.ani_2 .item {
-  animation-name: example;
-  animation-duration: 1s;
+  -webkit-animation-name: smail;
+  -moz-animation-name: smail;
+  -ms-animation-name: smail;
+  animation-name: smail;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  -ms-animation-duration: 0.4s;
+  animation-duration: 0.4s;
 }
 .preloader .item:nth-child(1){ animation-delay: 0s;}
 .preloader .item:nth-child(2){ animation-delay: 1s;}
@@ -221,23 +240,26 @@ textarea {
 .preloader .item:nth-child(11){ animation-delay: 10s;}
 .preloader .item:nth-child(12){ animation-delay: 11s;}
 
-@-o-keyframes example {
+@-o-keyframes smail {
   0% { font-size: 40px;}
   50% { font-size: 60px;}
   100% { font-size: 40px;}
 }
-@-moz-keyframes example {
+@-moz-keyframes smail {
   0% { font-size: 40px;}
   50% { font-size: 60px;}
   100% { font-size: 40px;}
 }
-@-webkit-keyframes example {
+@-webkit-keyframes smail {
   0% { font-size: 40px;}
   50% { font-size: 60px;}
   100% { font-size: 40px;}
 }
-@keyframes example {
+@keyframes smail {
   0% { font-size: 40px;}
   50% { font-size: 60px;}
   100% { font-size: 40px;}
 }
+
+
+
