@@ -1,3 +1,23 @@
+body {
+  margin: 0;
+  position: relative;
+  font: 10px/1.5 'Proxima Nova', Arial, Helvetica, sans-serif;
+  /* For older browsers */
+  background: url('../assets/images/rectangle-8.png') fixed;
+  /* Rectangle 8: */
+  background: linear-gradient(-180deg, #3023AE 0%, #53A0FE 100%, #B4ED50 100%) no-repeat fixed;
+}
+
 h1 {
-  color: blueviolet;
+  color: white;
+}
+
+.logo {
+  width: 140px;
+  height: 35px;
+  display: inline-block;
+  /* PNG или SVG */
+  background: url(../assets/images/logo.png) no-repeat;
+  cursor: pointer;
+  outline: none;
 }

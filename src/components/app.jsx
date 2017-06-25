@@ -7,6 +7,7 @@ import {
 import HomeComponent from './home';
 
 require('../styles/app.css');
+require('../styles/fonts.css');
 
 const Topic = ({ match }) => (
   <div>
@@ -15,11 +16,14 @@ const Topic = ({ match }) => (
 );
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path="/" component={HomeComponent} />
-      <Route path="/view/:urlName" component={Topic} />
-    </div>
-  </Router>,
+  <div>
+    <div className="logo" />
+    <Router>
+      <div>
+        <Route exact path="/" component={HomeComponent} />
+        <Route path="/view/:urlName" component={Topic} />
+      </div>
+    </Router>
+  </div>,
   document.getElementById('root'),
 );
