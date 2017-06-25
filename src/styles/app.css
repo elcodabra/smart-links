@@ -189,5 +189,55 @@ textarea {
 }
 /* BUTTON : end */
 
+.preloader {
+  display: inline-block;
+  margin: 0 auto;
+  font-size: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 650px;
+}
+.preloader.ani_1 .item{
+  animation-name: example;
+  animation-duration: 1s;
+}
+.preloader.ani_2 .item {
+  animation-name: example;
+  animation-duration: 1s;
+}
+.preloader .item:nth-child(1){ animation-delay: 0s;}
+.preloader .item:nth-child(2){ animation-delay: 1s;}
+.preloader .item:nth-child(3){ animation-delay: 2s;}
+.preloader .item:nth-child(4){ animation-delay: 3s;}
+.preloader .item:nth-child(5){ animation-delay: 4s;}
+.preloader .item:nth-child(6){ animation-delay: 5s;}
+.preloader .item:nth-child(7){ animation-delay: 6s;}
+.preloader .item:nth-child(8){ animation-delay: 7s;}
+.preloader .item:nth-child(9){ animation-delay: 8s;}
+.preloader .item:nth-child(10){ animation-delay: 9s;}
+.preloader .item:nth-child(11){ animation-delay: 10s;}
+.preloader .item:nth-child(12){ animation-delay: 11s;}
 
-
+@-o-keyframes example {
+  0% { font-size: 40px;}
+  50% { font-size: 60px;}
+  100% { font-size: 40px;}
+}
+@-moz-keyframes example {
+  0% { font-size: 40px;}
+  50% { font-size: 60px;}
+  100% { font-size: 40px;}
+}
+@-webkit-keyframes example {
+  0% { font-size: 40px;}
+  50% { font-size: 60px;}
+  100% { font-size: 40px;}
+}
+@keyframes example {
+  0% { font-size: 40px;}
+  50% { font-size: 60px;}
+  100% { font-size: 40px;}
+}

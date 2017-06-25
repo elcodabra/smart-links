@@ -68,9 +68,27 @@ class HomeComponent extends React.Component {
         </div>
       </div>
     );
+
+    const preloader = (
+        <div className="preloader ani_1 easing">
+            <div className="item">🍞</div>
+            <div className="item">🏀</div>
+            <div className="item">🏄</div>
+            <div className="item">🐟</div>
+            <div className="item">💀</div>
+            <div className="item">🐥</div>
+            <div className="item">🎺</div>
+            <div className="item">🎩</div>
+            <div className="item">💋</div>
+            <div className="item">🍑</div>
+            <div className="item">🍕</div>
+            <div className="item">🎧</div>
+        </div>
+    );
       const startUrl = (
           <div>
             <h1>Your url</h1>
+             {preloader}
             <input className="fild" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
           </div>
       );
