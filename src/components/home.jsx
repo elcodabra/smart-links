@@ -26,8 +26,14 @@ class HomeComponent extends React.Component {
     const process = this.state.isProcessing && this.state.smart ? processing : smartUrl;
     return (
       <div>
-        <h1>Welcome to Smart-Links!</h1>
-        <input onChange={this.urlChange} value={this.state.url} />
+        <h1>Your url:</h1>
+        <input className="input-main" onChange={this.urlChange} value={this.state.url} placeholder="Place your link here…" />
+        <div className="info">Click it or CMD+C to copy</div>
+        <div className="button-wrap justify">
+          <button className="blue">GENERATE ANOTHER</button>
+          <span className="text">or</span>
+          <button className="blue">CUSTOMIZE</button>
+        </div>
         {process}
         <EmojiPicker onChange={(data) => {
           console.log('Emoji chosen', data);

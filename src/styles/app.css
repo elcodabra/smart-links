@@ -1,15 +1,62 @@
-body {
+
+* {
   margin: 0;
-  position: relative;
-  font: 10px/1.5 'Proxima Nova', Arial, Helvetica, sans-serif;
-  /* For older browsers */
-  background: url('../assets/images/rectangle-8.png') fixed;
-  /* Rectangle 8: */
-  background: linear-gradient(-180deg, #3023AE 0%, #53A0FE 100%, #B4ED50 100%) no-repeat fixed;
+  padding: 0;
 }
 
-h1 {
-  color: white;
+html, body {
+  height: 100%;
+}
+body {
+  color: #fff;
+  margin: 0;
+  position: relative;
+  font: 26px 'Proxima Nova', Arial, Helvetica, sans-serif;
+  /*background: url('../assets/images/rectangle-8.png') fixed;*/
+  background: #011bbe;;
+}
+
+h1  {
+  font-weight: bold;
+  font-size: 62px;
+  text-align: left;
+  color: #fff;
+  text-align: center;
+}
+
+input, textarea {
+  outline: none;
+  font: 26px 'Proxima Nova', Arial, Helvetica, sans-serif;
+}
+
+input:active, textarea:active {
+  outline: none;
+}
+
+:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+/*--- Clearfix : start ---------------*/
+.cl:before,
+.cl:after {
+  content: " ";
+  display: table;
+}
+.cl:after {
+  clear: both;
+}
+/*--- Clearfix : end ---------------*/
+
+.easing, .easing * {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
 .logo {
@@ -20,4 +67,99 @@ h1 {
   background: url(../assets/images/logo.png) no-repeat;
   cursor: pointer;
   outline: none;
+  position: absolute;
+  top: 35px;
+  left: 60px;
 }
+
+.container {
+  width: 100%;
+  max-width: 930px;
+  margin: 0 auto;
+  position: relative;
+  top: 25%;
+  text-align: center;
+}
+
+.input-main {
+  width: 100%;
+  max-width: 600px;
+  height: 72px;
+  line-height: 72px;
+  border-radius: 33px;
+  background-color: #f950de;
+  box-shadow: 17px 20px 0 0 #031792;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0 75px;
+  color: #fff;
+  font-size: 46px;
+  margin: 0 auto 25px;
+  display: block;
+}
+.input-main::-webkit-input-placeholder { color: #fff; }
+.input-main::-moz-placeholder          { color: #fff; } /* Firefox 19+ */
+.input-main:-moz-placeholder           { color: #fff; } /* Firefox 18- */
+.input-main:-ms-input-placeholder      { color: #fff; }
+
+
+.info {
+  display: block;
+  margin-bottom: 30px;
+}
+
+
+
+/* BUTTON : start */
+/* Пример использования:
+<div class="button-wrap left">
+  <button class="blue">кнопка</button>
+  <button class="blue" disabled>кнопка</button>
+</div>
+Кнопки: виды
+1) blue // Голубая кнопка
+Кнопки: расположения ( .button-wrap.left )
+1) .mt30 Отступ сверху ( margin-top:30; )
+2) .left // Прижаты к левому краю
+3) .right // Прижаты к правому краю
+4) .center // По центру
+5) .justify // Прижаты по краям, остальные распологаются по равным отступам
+6) .around // Распологаются по всей площади, но с отступами от краев.
+ */
+.button-wrap { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center;}
+.button-wrap.left { justify-content: flex-start; }
+.button-wrap.left button { margin-right: 20px; }
+.button-wrap.right { justify-content: flex-end; }
+.button-wrap.right button { margin-left: 20px; }
+.button-wrap.center { justify-content: center; }
+.button-wrap.center button { margin: 0 10px; }
+.button-wrap.justify { justify-content: space-between; }
+.button-wrap.around { justify-content: space-around; }
+.button-wrap button.blue,
+.button-wrap a.blue {
+  display: inline-block;
+  min-width: 430px;
+  padding: 25px 35px;
+  border-radius: 100px;
+  background-color: #51e6fa;
+  box-shadow: 17px 20px 0 0 #031792;
+  font-size: 34px;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  border: 0;
+}
+.button-wrap button.blue:disabled,
+.button-wrap a.blue:disabled {
+  color:#fff;
+  background-color: #D3D3D3;
+  cursor: auto;
+}
+.button-wrap .text {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 36px;
+}
+/* BUTTON : end */
