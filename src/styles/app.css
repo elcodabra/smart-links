@@ -73,10 +73,10 @@ textarea {
 /*--- Clearfix : end ---------------*/
 
 .easing, .easing * {
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 
 .logo {
@@ -251,24 +251,37 @@ textarea {
 
 @-o-keyframes smail {
   0% { font-size: 40px;}
-  50% { font-size: 60px;}
+  50% { font-size: 50px;}
   100% { font-size: 40px;}
 }
 @-moz-keyframes smail {
   0% { font-size: 40px;}
-  50% { font-size: 60px;}
+  50% { font-size: 50px;}
   100% { font-size: 40px;}
 }
 @-webkit-keyframes smail {
   0% { font-size: 40px;}
-  50% { font-size: 60px;}
+  50% { font-size: 50px;}
   100% { font-size: 40px;}
 }
 @keyframes smail {
   0% { font-size: 40px;}
-  50% { font-size: 60px;}
+  50% { font-size: 50px;}
   100% { font-size: 40px;}
 }
 
+
+.emoji-mart-bar {
+  display: none;
+}
+.emoji-mart {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  border-radius: 30px;
+}
+.emoji-mart-search {
+  margin: 6px 20px 0;
+}
 
 
