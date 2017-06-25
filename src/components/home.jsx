@@ -76,7 +76,7 @@ class HomeComponent extends React.Component {
       <div>
         <h1>Your smart url</h1>
         <input className="fild big" onChange={this.onChangeSmart} value={this.state.smart} disabled={!this.state.isCustomize} />
-        <div className="info"><a href="#" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
+        <div className="info"><a href="#" className="link" onClick={this.onClipboard}>Click it</a> or CMD+C to copy</div>
         <div className="button-wrap justify">
           <button className="blue" onClick={this.generateAnother}>GENERATE ANOTHER</button>
           <span className="text">or</span>

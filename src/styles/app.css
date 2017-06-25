@@ -35,6 +35,14 @@ h1, .processing  {
   text-align: center;
   margin: 0 0 50px;
 }
+.processing {
+  font-size: 56px;
+  margin-bottom: 5px;
+}
+
+.link {
+  color: #fff;
+}
 
 input, textarea {
   outline: none;
