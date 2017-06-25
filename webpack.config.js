@@ -28,12 +28,16 @@ module.exports = {
         test: /\.css$/,
         include: [
           path.resolve(__dirname, './src/styles'),
-          path.resolve(__dirname, './node_modules/normalize.css/normalize.css'),
+          path.resolve(__dirname, './node_modules'),
         ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader',
         }),
+      },
+      {
+        test: /\.json$/,
+        use: 'json-loader',
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import EmojiPicker from 'emojione-picker';
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class HomeComponent extends React.Component {
         <h1>Welcome to Smart-Links!</h1>
         <input onChange={this.urlChange} value={this.state.url} />
         {process}
+        <EmojiPicker onChange={(data) => {
+          console.log('Emoji chosen', data);
+        }} />
       </div>
     );
   }
